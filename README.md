@@ -1,2 +1,2 @@
 # Protozoa Tracking
-![Protozoa Swimming](protozoa.gif)
+![Protozoa Swimming](https://imgur.com/a/uSntq)
