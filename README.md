@@ -1,2 +1,2 @@
 # Protozoa Tracking
-![Protozoa Swimming](http://imgur.com/otjwITU)
+[Protozoa Swimming](http://imgur.com/otjwITU)
