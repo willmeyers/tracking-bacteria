@@ -49,12 +49,12 @@ class Tracker:
             cnts, _ = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
             for c in cnts:
-                if cv2.contourArea(c) < 0:
+                if cv2.contourArea(c) < 350:
                     continue
                
                 x, y, w, h = cv2.boundingRect(c)
                 identifier = 'A1' 
-                cv2.putText(frame, identifier, (x+w/2, y), self.font, 0.5, (0, 255, 0), 1)
+                #cv2.putText(frame, identifier, (x+w/2, y), self.font, 0.5, (0, 255, 0), 1)
                 cv2.circle(frame, (x+w/2, y+h/2), 2, (0, 255, 0), -1)
                 cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 255))
 
