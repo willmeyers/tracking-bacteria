@@ -1,29 +1,26 @@
+import cv2
+from PIL import Image, ImageTk
 import Tkinter as tk
 
 from menubar import MenuBar
+from media import VideoCaptureFeed
 
 
 class MainApplicationFrame(tk.Frame):
-    def __init__(self, parent, *args, **kwargs):
+    def __init__(self, parent, video_stream, *args, **kwargs):
         tk.Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
+        self.video_stream = video_stream
 
-        self.parent.title("Protozoa Tracking Software")
-        self._center_window(tk.Toplevel(self.parent))
+        self.parent.title('Protozoa Tracking Software')
 
         self.menubar = MenuBar(self.parent)
+        self.feed = VideoCaptureFeed(self.parent, self.video_stream)
 
-        self.menubar.pack(side)
+        self.feed.capture_frame()
 
-    def _center_window(self, toplevel):
-        toplevel.update_idletasks()
-        w = toplevel.winfo_screenwidth()
-        h = toplevel.winfo_screenheight()
-        size = tuple(int(_) for _ in toplevel.geometry().split('+')[0].split('x'))
-        x = w/2 - size[0]/2
-        y = h/2 - size[1]/2
-        toplevel.geometry("%dx%d+%d+%d" % (size + (x, y)))
+        self.feed.pack()
 
 root = tk.Tk()
-MainApplicationFrame(root).pack(side='top', fill='both', expand=True)
+MainApplicationFrame(root).pack()
 root.mainloop()
