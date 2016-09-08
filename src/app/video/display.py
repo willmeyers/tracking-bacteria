@@ -21,6 +21,7 @@ class VideoDisplay:
         self.cropping = False
         self.box_start = None
         self.box_end = None
+        self.roi = None
 
         self.running = True
 
@@ -33,7 +34,7 @@ class VideoDisplay:
         if event == cv2.EVENT_MOUSEMOVE:
             mouse_pos = 'x:'+str(x)+' y:'+str(y) 
             cv2.rectangle(self.mask, (0, 0), (150, 25), (255, 255, 255), -1)
-            cv2.putText(self.mask, mouse_pos, (10, 20), cv2.FONT_HERSHEY_SIMPLEX, .65, (255, 0, 255), 1)
+            cv2.putText(self.mask, mouse_pos, (10, 20), cv2.FONT_HERSHEY_SIMPLEX, .65, (0, 0, 0), 1)
 
         if event == cv2.EVENT_LBUTTONDOWN:
             self.box_start = (x, y)
@@ -42,13 +43,19 @@ class VideoDisplay:
         if event == cv2.EVENT_MOUSEMOVE and self.cropping:
             self.box_end = (x, y)
             cv2.rectangle(self.mask, self.box_start, self.box_end, (0, 155, 0), -1)
-            #self.tracker.set_point(x, y)
-            #self.tracker.reset()
+        
         if event == cv2.EVENT_LBUTTONUP:
-            self.endpoint = (x, y)
+            self.box_end = (x, y)
             self.cropping = False
-            self.mask = np.zeros_like(self.mask)
-            #cv2.rectangle(self.mask, self.box_start, self.box_end, (0, 155, 0), -1)
+            self.roi = self.frame[self.box_start[1]:self.box_end[1], self.box_start[0]:self.box_end[0]]
+            
+            points = self.tracker.get_points_to_track(self.roi)
+            for p in points:
+                p[0][0] = p[0][0]+self.box_start[0]
+                p[0][1] = p[0][1]+self.box_start[1]
+
+            self.tracker.set_points_to_track(points)
+            self.mask = np.zeros_like(self.frame)
 
 
     def run(self):
@@ -60,5 +67,5 @@ class VideoDisplay:
 
             cv2.waitKey(30)
 
-d = VideoDisplay(cv2.VideoCapture(0))
+d = VideoDisplay(cv2.VideoCapture(1))
 d.run()
