@@ -1,8 +1,9 @@
-#imports
+from app.controller import Controller
 
 
 def main():
-    pass
+    c = Controller()
+    c.run()
 
 
 if __name__ == '__main__':
