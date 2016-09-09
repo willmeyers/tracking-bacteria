@@ -23,7 +23,7 @@ class Tracker:
 
         # Feature detection params
         self.feature_params = dict(
-            maxCorners = 10,
+            maxCorners = 40,
             qualityLevel = 0.3,
             minDistance = 7,
             blockSize = 7
@@ -80,10 +80,23 @@ class Tracker:
         points = cv2.goodFeaturesToTrack(mat, mask=None, **self.feature_params)
         return points
 
-    def set_points_to_track(self, points):
-        """ Given an array of points (x, y), set the points to be tracked to them.
+    def set_mean_point(self, points):
+        """ Given an array of points (x, y), find the average position to track.
+        
         """
-        self.p0 = points
+        x_sum = 0
+        y_sum = 0
+
+        for p in points:
+            x_sum += p[0][0]
+            y_sum += p[0][1]
+
+        x_avg = int(x_sum/len(points))
+        y_avg = int(y_sum/len(points))
+        
+        print(x_avg, y_avg)
+
+        self.p0 = np.array([[(x_avg, y_avg)]], dtype=np.float32)
 
     def clear_paths(self):
         """ Clears drawn paths from the `draw_mask`. Just zeros an array the size

@@ -13,16 +13,18 @@ class VideoDisplay:
     """
     def __init__(self, vstream):
         cv2.namedWindow('Video')
+        
         self.vstream = vstream 
+        _, init_frame = vstream.read()
 
-        self.tracker = Tracker(self.vstream)
+        self.tracker = Tracker(init_frame)
 
         cv2.setMouseCallback('Video', self.handle_mouse_events)
 
         self.mask = np.zeros_like(self.tracker.init_frame)
         cv2.rectangle(self.mask, (0, 0), (150, 25), (255, 255, 255), -1)
 
-        # For defining ROI
+        # For defining region of interest 
         self.cropping = False
         self.box_start = None
         self.box_end = None
@@ -51,7 +53,7 @@ class VideoDisplay:
             self.box_end = (x, y)
             cv2.rectangle(self.mask, self.box_start, self.box_end, (0, 155, 0), -1)
         
-        # On click up, set end point and create ROI, set points to track
+        # On click up, set end point and create region of interest, set points to track
         if event == cv2.EVENT_LBUTTONUP:
             self.box_end = (x, y)
             self.cropping = False
@@ -62,8 +64,9 @@ class VideoDisplay:
                 p[0][0] = p[0][0]+self.box_start[0]
                 p[0][1] = p[0][1]+self.box_start[1]
 
-            self.tracker.set_points_to_track(points)
+            self.tracker.set_mean_point(points)
             self.mask = np.zeros_like(self.frame)
+            self.tracker.clear_paths()
 
 
     def run(self):

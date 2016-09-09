@@ -4,7 +4,7 @@ from video.display import VideoDisplay
 
 class Controller:
     def __init__(self):
-        self.vstream = cv2.VideoCapture(0)
+        self.vstream = cv2.VideoCapture(1)
         
         self.stream = VideoDisplay(self.vstream)
 
