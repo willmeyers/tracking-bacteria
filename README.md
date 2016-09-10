@@ -11,6 +11,7 @@ There are currently two different methods that I implemented in tracking protozo
 2. Lucas-Kanade and Feature Detection
 
 ### Background Subtraction
-
+![Background-sub image](background-sub.gif)
 
 ### Feature Detection and Lucas-Kanade
+![Lucas-Kanade image](lucas-kanade.gif)
