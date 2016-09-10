@@ -12,8 +12,10 @@ There are currently two different methods that I implemented in tracking protozo
 
 ### Background Subtraction
 ![Background-sub image](background-sub.gif)
+
 Comparing the blurred (using Guassian Blur) initial frame to the current captured frame and thresholding the difference.
 
 ### Feature Detection and Lucas-Kanade
 ![Lucas-Kanade image](lucas-kanade.gif)
+
 Defining a region of interest which returns an array of features and edges in the form of (X, Y) coordinates. The points are then avgeraged out to determine the estimated center of the protozoa. Then using Lucas-Kanade, track the points position.
