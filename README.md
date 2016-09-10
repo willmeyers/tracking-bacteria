@@ -8,7 +8,9 @@ There are currently two different methods that I implemented in tracking protozo
 
 1. Background subtraction
 
-2. Lucas-Kanade and feature detection
+2. Lucas-Kanade and Feature Detection
 
 ### Background Subtraction
+
+
 ### Feature Detection and Lucas-Kanade
