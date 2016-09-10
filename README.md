@@ -5,6 +5,10 @@ To limit the scope of the program, I did not implement a meaningful way to inden
 
 ## Method
 There are currently two different methods that I implemented in tracking protozoa built into the application.
+
 1. Background subtraction
+
 2. Lucas-Kanade and feature detection
 
+### Background Subtraction
+### Feature Detection and Lucas-Kanade
