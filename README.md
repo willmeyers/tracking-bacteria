@@ -4,7 +4,7 @@ Interested in computer vision and inspired by an article on [using protozoa swim
 Both methods capture the position (X, Y) of the points (retrieved from the moving organisms) which can be used as a basis for measuring interaction and correlation of variables. The program, while limited, provides a platform to further identify swimming patterns of selected organisms in 2D and 3D space.
 
 ## Methods
-The two different methods that I implemented in tracking protozoa that are built into the application.
+The two different methods that I implemented are:
 
 1. Background subtraction
 
