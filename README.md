@@ -1,7 +1,7 @@
 # Tracking Protozoa
 Interested in computer vision and inspired by an article on [using protozoa swimming patterns to detect toxins in water](https://www.whoi.edu/mr/pr/viewArticle.do?id=133689), I developed a basic program that tracks movement in protozoa, rotifers, and other microscopic organisms. The program implements two possible ways of tracking movement: background subtraction and Lucas-Kanade/Feature detection.
 
-Both methods capture the position (X, Y) of the points (retrieved from the moving organisms) a basis for measuring interaction and correlation of variables. The program, while limited, provides a platform to further identify swimming patterns of selected organisms in 2D and 3D space.
+Both methods capture the position (X, Y) of the points (retrieved from the moving organisms) which can be used as a basis for measuring interaction and correlation of variables. The program, while limited, provides a platform to further identify swimming patterns of selected organisms in 2D and 3D space.
 
 ## Methods
 The two different methods that I implemented in tracking protozoa that are built into the application.
